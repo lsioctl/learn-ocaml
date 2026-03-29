@@ -42,3 +42,5 @@ let _ = assert (encode1 ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; 
 let _ = assert (encode3 ["a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e"] = [Many (4, "a"); One "b"; Many (2, "c"); Many (2, "a"); One "d";
  Many (4, "e")]
 )
+
+let _ = assert (duplicate [1; 2; 3] = [1; 1; 2; 2; 3; 3])

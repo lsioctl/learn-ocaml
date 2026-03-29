@@ -177,3 +177,12 @@ let encode3 list =
             else aux 0 ((create_rle count a) :: acc) t
     in
     List.rev (aux 0 [] list)
+
+
+let duplicate list = 
+    let rec aux acc = function
+    | [] -> acc
+    | [x] -> x :: x :: acc
+    | h :: t -> h :: h :: aux acc t
+    in
+    aux [] list
