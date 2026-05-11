@@ -1,8 +1,8 @@
-open Common
+open Exercices
 
 
-(* let _ = print_int (fib 17)
-let _ = print_int (fib2 17) *)
+let () = assert (facto 5 = 120)
+let () = assert (facto2 5 = 120)
 
 let () = assert (tail [1; 2; 3] = Some 3)
 let () = assert (tail [1] = Some 1)

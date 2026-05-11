@@ -1,4 +1,1 @@
-(executable
- (name first)
- (libraries common)
- )
+(executables (names first second) (modules first second exercices gooderis))

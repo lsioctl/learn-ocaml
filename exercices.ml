@@ -1,12 +1,10 @@
-(* let rec fib x = if x = 1 then 1 else fib(x - 1) + fib (x - 2) *)
 
-let rec fib x = match x with
-    | 0 -> 0
-    | 1 -> 1
-    | _ -> fib (x - 1) + fib (x - 2)
+let rec facto x = match x with
+    | 0 -> 1
+    | n -> n * facto (n - 1)
 
 
-let rec fib2 x = if x <= 1 then x else fib2 (x - 1) + fib2 (x - 2)
+let rec facto2 x = if x < 1 then 1 else x * facto2 (x - 1)
 
 
 let rec tail = function
