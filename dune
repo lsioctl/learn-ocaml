@@ -1,1 +1,1 @@
-(executables (names first second) (modules first second exercices gooderis))
+(executables (names first second third) (modules first second third exercices gooderis cs3110))
