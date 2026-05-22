@@ -62,3 +62,15 @@ let rec string_of_expr = function
   | Divide (l, r) -> (string_of_expr l) ^ " Divide " ^(string_of_expr r)
   | Multiply (l, r) -> (string_of_expr l) ^ " Multiply " ^(string_of_expr r)
   | Integer n -> string_of_int n
+
+  (*
+    precedence not respected, so this has to be a
+    correctly parsed expression
+    TODO: maybe I'm mixing up parsing and evaluating ?
+  *)   
+  let rec eval = function
+   | Plus (l, r) -> (eval l) + (eval r)
+   | Minus (l, r) -> (eval l) - (eval r)
+   | Divide (l, r) -> (eval l) / (eval r)
+   | Multiply (l, r) -> (eval l) * (eval r)
+   | Integer n -> n

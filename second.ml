@@ -12,3 +12,5 @@ let () = print_endline (string_of_direction ssw)
 let e1 = Divide (Plus (Integer 2, Integer 1), Integer 3)
 
 let () = print_endline (string_of_expr e1)
+
+let () = print_endline (string_of_int (eval e1))
