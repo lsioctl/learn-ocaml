@@ -14,3 +14,9 @@ let e1 = Divide (Plus (Integer 2, Integer 1), Integer 3)
 let () = print_endline (string_of_expr e1)
 
 let () = print_endline (string_of_int (eval e1))
+
+let e2 = DivideGen (PlusGen (Value 2., Value 1.), Value 3.)
+
+let () = print_endline (string_of_float (gen_eval float_ops e2))
+
+

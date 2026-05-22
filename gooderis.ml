@@ -68,9 +68,40 @@ let rec string_of_expr = function
     correctly parsed expression
     TODO: maybe I'm mixing up parsing and evaluating ?
   *)   
-  let rec eval = function
-   | Plus (l, r) -> (eval l) + (eval r)
-   | Minus (l, r) -> (eval l) - (eval r)
-   | Divide (l, r) -> (eval l) / (eval r)
-   | Multiply (l, r) -> (eval l) * (eval r)
-   | Integer n -> n
+let rec eval = function
+  | Plus (l, r) -> (eval l) + (eval r)
+  | Minus (l, r) -> (eval l) - (eval r)
+  | Divide (l, r) -> (eval l) / (eval r)
+  | Multiply (l, r) -> (eval l) * (eval r)
+  | Integer n -> n
+
+(* generics *)
+
+type 'a genexpr =
+  | PlusGen of 'a genexpr * 'a genexpr
+  | MinusGen of 'a genexpr * 'a genexpr
+  | DivideGen of 'a genexpr * 'a genexpr
+  | MultiplyGen of 'a genexpr * 'a genexpr
+  | Value of 'a
+
+type 'a operators = {
+  add: 'a -> 'a -> 'a ;
+  minus: 'a -> 'a -> 'a ;
+  divide: 'a -> 'a -> 'a ;
+  multiply: 'a -> 'a -> 'a ;
+}
+
+let rec gen_eval op = function
+  | PlusGen (l, r) -> op.add (gen_eval op l) (gen_eval op r)
+  | MinusGen (l, r) -> op.minus (gen_eval op l) (gen_eval op r)
+  | DivideGen (l, r) -> op.divide (gen_eval op l) (gen_eval op r)
+  | MultiplyGen (l, r) -> op.multiply (gen_eval op l) (gen_eval op r)
+  | Value n -> n
+
+let float_ops = {
+  (* spaces are vital to avoid false comment for float multiplication *)
+  divide = ( /. );
+  multiply = ( *. );
+  add = ( +. );
+  minus = ( -. );
+}
