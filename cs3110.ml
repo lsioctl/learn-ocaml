@@ -1,6 +1,8 @@
 let rec fold_left fn acc = function
-  | [] -> acc
-  | h :: t -> fold_left fn (fn acc h) t
+  | [] ->
+      acc
+  | h :: t ->
+      fold_left fn (fn acc h) t
 
 (*
   This is wrong, it is not a real fold right,
