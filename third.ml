@@ -5,7 +5,7 @@ open Cs3110
   fold_left (((0 - 1) - 2) - 3) []
 *)
 
-let () = assert (fold_left ( - ) 0 [1; 2; 3] = -6)
+let () = assert (fold_left ( - ) 0 [ 1; 2; 3 ] = -6)
 
 (* let () = Printf.printf "%d" b *)
 
