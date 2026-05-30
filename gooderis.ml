@@ -3,6 +3,7 @@ let rec fact = function
   | n -> n * fact (n - 1)
 ;;
 
+(* this is not tail recursive *)
 let mymap fn list =
   let rec aux acc = function
     | [] -> []
@@ -10,6 +11,13 @@ let mymap fn list =
     | h :: t -> fn h :: aux acc t
   in
   aux [] list
+;;
+
+(* seeing the course I don´t need the second match *)
+(* this one is from the course *)
+let rec mymap_exercice fn = function
+  | [] -> []
+  | h :: t -> fn h :: mymap_exercice fn t
 ;;
 
 (* site's solution *)
@@ -110,4 +118,31 @@ let float_ops =
   ; add = ( +. )
   ; minus = ( -. )
   }
+;;
+
+(* tail recursion *)
+
+let mymap_tr fn list =
+  let rec aux acc = function
+    | [] -> List.rev acc
+    | h :: t -> aux (fn h :: acc) t
+  in
+  aux [] list
+;;
+
+(* imperative *)
+(* square matrix assumed
+Todo: would be fun to test for this
+*)
+
+let is_sym_imper mat =
+  let len = Array.length mat in
+  let is_sym = ref true in
+  for i = 0 to len - 1 do
+    for j = 0 to len - 1 do
+      if mat.(i).(j) <> mat.(j).(i) then is_sym := false
+    done
+  done;
+  (* how sad it is, ! means derefernce and not negation ...*)
+  !is_sym
 ;;
